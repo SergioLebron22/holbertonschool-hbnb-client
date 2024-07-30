@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Places</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="header">
         <img src="images/logo.png" alt="hbnb logo">
-        <nav>
+        <nav class="navbar-menu">
             <a href="login.html" id="login-link">Login</a>
         </nav>
     </header>
     <main>
-        <h1>Available Places</h1>
+        <h1 class="title">Available Places</h1>
         <section id="filter">
             <label for="country-filter">Filter by Country:</label>
             <select id="country-filter">
@@ -25,30 +26,30 @@
             <!-- List of places will be populated dynamically -->
             <ul class="row">
                 <li class="place-card">
-                    <div>
-                        <h2>Place name 1</h2>
+                    <div class="place">
+                        <h2 class="place-name">Place name 1</h2>
                         <img src="404image" alt="image"/>
                         <p id="price">Price per night: </p>
                         <p id="location">Location: </p>
-                        <button class="details-button">View Details</button>
+                        <button class="details-button">View Details</button>   
                     </div>
                 </li>
                 <li class="place-card">
-                    <div>
-                        <h2>Place name 2</h2>
-                        <img src="404image" alt="image"/>
+                    <div class="place">
+                        <h2 class="place-name">Place name 2</h2>
+                        <img class="place-image" src="404image" alt="image"/>
                         <p id="price">Price per night: </p>
                         <p id="location">Location: </p>
-                        <button class="details-button">View Details</button>
-                    </div>
+                        <button class="details-button">View Details</button>     
+                    </div>   
                 </li>
                 <li class="place-card">
-                    <div>
-                        <h2>Place name 3</h2>
+                    <div class="place">
+                        <h2 class="place-name">Place name 3</h2>
                         <img src="404image" alt="image"/>
                         <p id="price">Price per night: </p>
                         <p id="location">Location: </p>
-                        <button class="details-button">View Details</button>
+                        <button class="details-button">View Details</button>    
                     </div>
                 </li>
             </ul>
@@ -58,6 +59,6 @@
     <script src="scripts.js"></script>
 </body>
 <footer>
-    <p>&copy; 2024 HBnb Evolution. All rights reserved</p>
+    <p id="rights">&copy; 2024 HBnb Evolution. All rights reserved</p>
 </footer>
 </html>
