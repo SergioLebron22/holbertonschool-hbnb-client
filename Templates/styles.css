@@ -110,8 +110,104 @@ main {
     margin: 20px;
 }
 
+.name-place {
+    text-align: center;
+    color: var(--color-red);
+    font-family: var(--font-family-title);
+    padding: 10px;
+}
+
+.place-info {
+    margin: 20px;
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display:flexbox;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.review-card {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#reviews h1 {
+    font-family: var(--font-family-title);
+}
+
+.review-card h3 {
+    margin: 5px;
+    font-family: var(--font-family-title);
+}
+
+.review-card p {
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#add-review h2 {
+    margin: 10px;
+    font-family: var(--font-family-title);
+}
+
+#add-review label {
+    margin: 10px;
+    font-weight: bold;
+}
+
+#review-text {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+}
+
+#review-rating {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    padding: 5px;
+}
+
+#add-review button {
+    width: 100%;
+    margin: 10px;
+    border-radius: 2.5px;
+    border: 1px solid #ddd;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 10px;
+}
+
+
+#review-form h2 {
+    font-family: var(--font-family-title);
+    color: var(--color-red);
+}
+
+#review-form label {
+    top: 10px;
+    font-weight: bold;
+}
+
+#place {
+    display: flex;
+    padding: 5px;
+}
+
+#review {
+    display: flex;
+    width: 100%;
+}
+
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding: 25px;
