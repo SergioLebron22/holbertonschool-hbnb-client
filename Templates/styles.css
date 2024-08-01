@@ -45,6 +45,8 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin-left: 1rem;
+    margin-right: 1rem;
+    top: 5px;
 }
 
 .logo {
@@ -234,6 +236,7 @@ main {
     padding: 5px;
     margin: 10px;
     width: 30%;
+    border-radius: 5px;
 }
 
 #review {
@@ -243,6 +246,7 @@ main {
     width: 99%;
     height: 300px;
     resize: none;
+    border-radius: 5px;
 }
 
 #login{
