@@ -81,7 +81,8 @@ main {
     margin: 0 -5px;
     width: 100%;
     justify-content: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
 .place-card {
@@ -110,7 +111,7 @@ main {
  }
 
 .details-button {
-    background-color: #008080;
+    background-color: var(--color-red);
     color: #fff;
     padding: 10px;
     border-radius: 10px;
