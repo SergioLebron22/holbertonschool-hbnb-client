@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredPlaces = selected === 'all' ? places : places.filter(place => place.country_code === selected);
 
         filteredPlaces.forEach(place => {
-            const placeElement = document.createElement('li');
+            const placeElement = document.createElement('div');
             placeElement.innerHTML = `
                 <div class="place">
                     <h2 class="place-name">${place.description}</h2>

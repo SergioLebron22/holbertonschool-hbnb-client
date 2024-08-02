@@ -12,6 +12,10 @@
         "name": "Mexico"
     },
     {
+        "code": "CA",
+        "name": "Canada"
+    },
+    {
         "code": "BR",
         "name": "Brazil"
     },
