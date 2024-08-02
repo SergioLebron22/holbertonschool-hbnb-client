@@ -36,16 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function checkAuthentication() {
   const token = getCookie('token');
   const loginLink = document.getElementById('login-link');
-  const addReviewSection = document.getElementById('add-review');
 
   if (!token) {
       loginLink.style.display = 'block';
-      addReviewSection.style.display = 'none';
   } else {
       loginLink.style.display = 'none';
       fetchPlaces(token);
-      addReviewSection.style.display = 'block';
-      fetchPlaceDetails(token, placeId);
   }
 }
 
@@ -55,60 +51,119 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-async function fetchPlaces(token) {
-  try {
-      const response = await fetch('http://127.0.0.1:5000/places', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-          }
-      });
+// async function fetchPlaces(token) {
+//   try {
+//       const response = await fetch('http://127.0.0.1:5000/places', {
+//           method: 'GET',
+//           headers: {
+//               'Content-Type': 'application/json',
+//               'Authorization': `Bearer ${token}`
+//           }
+//       });
 
-      if (response.ok) {
-          const places = await response.json();
-          displayPlaces(places);
-      } else {
-          console.error('Error:', response.statusText);
-          alert('Failed to load places: ' + response.statusText);
-      }
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
+//       if (response.ok) {
+//           const places = await response.json();
+//           displayPlaces(places);
+//       } else {
+//           console.error('Error:', response.statusText);
+//           alert('Failed to load places: ' + response.statusText);
+//       }
+//   } catch (error) {
+//       console.error('Error:', error);
+//   }
+// }
 
-function displayPlaces(places) {
-  const pList = document.querySelector('.row');
-  pList.innerHTML = '';
+// function displayPlaces(places, country) {
+//   const pList = document.querySelector('.row');
+//   pList.innerHTML = '';
 
-  places.forEach(place => {
-      const pElement = document.createElement('li');
-      pElement.classList.add('place-card');
-      pElement.innerHTML = `
-          <div class="place">
-              <h2 class="place-name">${place.description}</h2>
-              <img src="404image" alt="image"/>
-              <p id="price">Price per night: ${place.price_per_night}</p>
-              <p id="location">Location: ${place.city_name}, ${place.country_name}</p>
-              <a href="place.html"><button class="details-button">View Details</button></a>
-          </div>
-      `;
-      pList.appendChild(pElement);
-  });
-}
+//   places.forEach(place => {
+//       const pElement = document.createElement('li');
+//       pElement.classList.add('place-card');
+//       pElement.innerHTML = `
+//           <div class="place">
+//               <h2 class="place-name">${place.description}</h2>
+//               <img src="404image" alt="image"/>
+//               <p id="price">Price per night: ${place.price_per_night}</p>
+//               <p id="location">Location: ${place.city_name}, ${place.country_name}</p>
+//               <a href="place.html"><button class="details-button">View Details</button></a>
+//           </div>
+//       `;
+//       pList.appendChild(pElement);
+//   });
+// }
 
-document.getElementById('country-filter').addEventListener('change', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
+    const countriesselect = document.getElementById('country-filter');
+    const placesContaiter = document.getElementById('row');
     
+    let countries = [];
+    let places = [];
+
+    const fetchCountries = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/countries');
+            const data = await response.json();
+            console.log(data);
+            countries = data;
+            console.log(countries);
+            populateCountriesDropdown();
+        } catch (error) {
+            console.error('Unable to fetch countries', error);
+        }
+    };
+
+    const fetchPlaces = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/places');
+            const data = await response.json();
+            places = data;
+            console.log(places)
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    const populateCountriesDropdown = () => {
+        const allOptions = document.createElement('option');
+        allOptions.value = 'all';
+        allOptions.textContent = 'All'; 
+        countriesselect.appendChild(allOptions);
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.textContent = country.name;
+            console.log(option.textContent);
+            countriesselect.appendChild(option);
+        });
+    };
+    const displayPlaces = (selected) => {
+        placesContaiter.innerHTML = '';
+        
+        const filteredPlaces = selected === 'all' ? places : places.filter(place => place.country_code === selected);
+
+        filteredPlaces.forEach(place => {
+            const placeElement = document.createElement('li');
+            placeElement.innerHTML = `
+                <div class="place">
+                    <h2 class="place-name">${place.description}</h2>
+                    <img src="${place.image_url || '404image'}" alt="image"/>
+                    <p id="price">Price per night: ${place.price_per_night}</p>
+                    <p id="location">Location: ${place.city_name}, ${place.country_name}</p>
+                    <a href="place.html"><button class="details-button">View Details</button></a>
+                </div>
+            `;
+            placesContaiter.appendChild(placeElement);
+        });
+    }
+
+    countriesselect.addEventListener('change', (event) => {
+        const selected = event.target.value;
+        displayPlaces(selected);
+    });
+
+    fetchCountries();
+    fetchPlaces();
 });
 
-function getPlaceIdFromURL() {
-   
-}
 
-async function fetchPlaceDetails(token, placeId) {
-    
-}
-
-function displayPlaceDetails(place) {
-  
-}
